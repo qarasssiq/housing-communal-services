@@ -1,5 +1,6 @@
 package org.example.Web2.controllers;
 
+import org.example.Web2.domain.Role;
 import org.example.Web2.domain.User;
 import org.example.Web2.repos.UserRepo;
 import org.example.Web2.service.UserService;
@@ -39,7 +40,7 @@ public class RegistrationController {
             model.put("message", "User exists!");
             return "registration";
         }
-        User user = new User(username, password, "USER", firstname, lastname, patronymic, phoneNumber, email);
+        User user = new User(username, password, "ADMIN", firstname, lastname, patronymic, phoneNumber, email);
         user.setActive(true);
         userRepo.save(user);
         userService.addUser(user);

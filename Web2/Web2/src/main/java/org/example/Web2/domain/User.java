@@ -32,18 +32,21 @@ public class User implements UserDetails {
 
     private String email;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userId")
+    private Set<Address> addresses;
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+//    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+//    @Enumerated(EnumType.STRING)
+//    private Set<Role> roles;
+//
+//    public Set<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 
     public boolean isActive() {
         return active;
@@ -53,9 +56,7 @@ public class User implements UserDetails {
         this.active = active;
     }
 
-    public User() {
-
-    }
+    public User() {}
 
     public User(String user_name,
                 String user_password,
@@ -67,7 +68,7 @@ public class User implements UserDetails {
                 String email) {
         this.userPassword = user_password;
         this.username = user_name;
-        setUserRole(role);
+        this.userRole = role;
         this.firstname = firstname;
         this.lastname = lastname;
         this.patronymic = patronymic;
@@ -103,14 +104,8 @@ public class User implements UserDetails {
         return userRole;
     }
 
-    public void setUserRole(String user_role) {
-        for (Role role: Role.values()) {
-            if (role.name().equals(user_role)) {
-                this.userRole = user_role;
-                return;
-            }
-        }
-        this.userRole = "INVALID";
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public String getFirstname() {
@@ -202,6 +197,7 @@ public class User implements UserDetails {
     }
 
     public boolean isAdmin() {
-        return roles.contains(Role.ADMIN);
+        return userRole.equals("ADMIN");
+        //return roles.contains(Role.ADMIN);
     }
 }

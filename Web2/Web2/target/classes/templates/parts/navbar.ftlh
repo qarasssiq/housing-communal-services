@@ -13,8 +13,8 @@
                 <a class="nav-item nav-link my-1" href="/admin">Администратор</a>
             </div>
         </#if>
-        <div class="col-lg-1 offset-2">
-            <a class="nav-item nav-link my-1" href="/main">Тесты</a>
+        <div class="col-lg-1">
+            <a class="nav-item nav-link my-1" href="/main">Главная</a>
         </div>
         <div class="col-lg-1">
             <a class="nav-item nav-link my-1" href="/profile">Профиль</a>
