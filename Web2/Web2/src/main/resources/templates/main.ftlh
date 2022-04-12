@@ -9,7 +9,6 @@
                 <tr>
                     <th>Населённый пункт</th>
                     <th>Адрес</th>
-                    <th>Номер лицевого счёта</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -17,8 +16,7 @@
                     <tr>
                         <td>${address.city}</td>
                         <td>${address.address}</td>
-                        <td>${address.id}</td>
-                        <td><input type="button" value="Посмотреть задолженности" onClick='location.href="/address/${address.id}"'></td>
+                        <td><input type="button" value="Услуги" onClick='location.href="/address/${address.id}"'></td>
                     </tr>
                 <#else>
                 </#list>

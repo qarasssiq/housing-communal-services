@@ -1,9 +1,7 @@
 package org.example.Web2.domain;
 
-import net.bytebuddy.implementation.bind.annotation.Default;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "bills")
@@ -13,29 +11,30 @@ public class Bill {
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "address_id")
-    private Address addressId;
-
-    private String type;
+    @JoinColumn(name = "service_id")
+    private Service serviceId;
 
     private String status = "Не оплачено";
 
-    private Integer value;
+    private Double meter;
+
+    private Double amount;
+
+    private LocalDate date;
+
+    public Bill() {
+    }
+
+    public Bill(Service serviceId, String status, Double meter, Double amount, LocalDate date) {
+        this.serviceId = serviceId;
+        this.status = status;
+        this.meter = meter;
+        this.amount = amount;
+        this.date = date;
+    }
 
     public Long getId() {
         return id;
-    }
-
-    public Address getAddressId() {
-        return addressId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getStatus() {
@@ -46,11 +45,27 @@ public class Bill {
         this.status = status;
     }
 
-    public Integer getValue() {
-        return value;
+    public Double getMeter() {
+        return meter;
     }
 
-    public void setValue(Integer value) {
-        this.value = value;
+    public void setMeter(Double meter) {
+        this.meter = meter;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
