@@ -9,5 +9,7 @@ import java.util.List;
 public interface BillRepo extends JpaRepository<Bill, Long> {
     List<Bill> findByServiceId(Service service);
 
+    List<Bill> findByServiceIdAndIsPaidFalse(Service service);
+
     Bill findBillById(Long id);
 }

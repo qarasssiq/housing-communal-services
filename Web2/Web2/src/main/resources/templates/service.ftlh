@@ -1,21 +1,22 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page "Услуга">
-    <div class="row">
+    <div class="row g-0">
         <div class="col-lg-6 offset-3 text-center">
             <h1 style="margin-top: 25px; margin-bottom: 25px">Счета</h1>
-            <table class="table table-bordered table-hover align-middle">
+            <table class="table table-bordered table-hover align-middle table-striped">
                 <thead>
                 <tr>
-                    <th>Дата</th>
+                    <th>Дата счёта</th>
                     <th>Показания</th>
                     <th>Сумма к оплате</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <#list bills as bill>
                     <tr>
-                        <td>${bill.date}</td>
+                        <td>${bill.date.format(formatter)}</td>
                         <td>${bill.meter}<#if service.type = "Электричество">
                                 кВт.ч
                             <#else>

@@ -6,7 +6,7 @@
         <script>window.alert("Такая услуга уже есть.");</script>
         </#if>
     </#if>
-    <div class="row text-center">
+    <div class="row text-center g-0">
         <form method="post">
             <div style="margin-left: 2px">
                 <label for="type" style="font-weight: bold">Тип услуги: </label>

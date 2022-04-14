@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page "Добавление адреса">
-    <div class="row text-center">
+    <div class="row text-center g-0">
         <form method="post">
             <div style="margin-left: 2px">
                 <label for="city" style="font-weight: bold">Населённый пункт: </label>

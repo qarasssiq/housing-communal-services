@@ -14,7 +14,7 @@ public class Bill {
     @JoinColumn(name = "service_id")
     private Service serviceId;
 
-    private String status = "Не оплачено";
+    private boolean isPaid;
 
     private Double meter;
 
@@ -25,9 +25,8 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(Service serviceId, String status, Double meter, Double amount, LocalDate date) {
+    public Bill(Service serviceId, Double meter, Double amount, LocalDate date) {
         this.serviceId = serviceId;
-        this.status = status;
         this.meter = meter;
         this.amount = amount;
         this.date = date;
@@ -37,12 +36,12 @@ public class Bill {
         return id;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean getIsPaid() {
+        return isPaid;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setIsPaid(boolean isPaid) {
+        this.isPaid = isPaid;
     }
 
     public Double getMeter() {

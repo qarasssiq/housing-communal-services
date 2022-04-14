@@ -12,7 +12,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -57,7 +56,9 @@ public class AddressController {
     @GetMapping("/{id}/service/{serviceId}")
     String address(@PathVariable("id") Long addressId, @PathVariable("serviceId") Long serviceId, Model model) {
         Service service = serviceRepo.findServiceById(serviceId);
-        Iterable<Bill> bills = billRepo.findByServiceId(service);
+        List<Bill> bills = billRepo.findByServiceIdAndIsPaidFalse(service);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        model.addAttribute("formatter", formatter);
         model.addAttribute("service", service);
         model.addAttribute("bills", bills);
         return "service";
@@ -66,7 +67,7 @@ public class AddressController {
     @GetMapping("{addressId}/service/{serviceId}/payBill/{id}")
     String payBill(@PathVariable("id") Long id, Model model, @PathVariable String addressId, @PathVariable String serviceId) {
         Bill bill = billRepo.findBillById(id);
-        bill.setStatus("Оплачено");
+        bill.setIsPaid(true);
         billRepo.save(bill);
         return "redirect:/address/" + addressId + "/service/" + serviceId;
     }
@@ -114,7 +115,7 @@ public class AddressController {
             case ("Газ") -> meter * 7.73;
             default -> 0.0;
         };
-        Bill bill = new Bill(service, "Не оплачено", meter, amount, LocalDate.now());
+        Bill bill = new Bill(service, meter, amount, LocalDate.now());
         billRepo.save(bill);
         return "redirect:/address/" + addressId + "/service/" + serviceId;
     }

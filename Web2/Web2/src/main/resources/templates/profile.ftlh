@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page "Профиль">
-    <div class="row text-center">
+    <div class="row text-center g-0">
         <form method="post">
             <div style="margin-top: 10px">Имя пользователя: ${user.username}</div>
             <div style="margin-top: 10px">Роль: ${user.userRole}</div>

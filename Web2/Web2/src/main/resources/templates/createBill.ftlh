@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page "Добавление счета">
-    <div class="row text-center">
+    <div class="row text-center g-0">
         <form method="post">
             <div>
                 <label for="meter" style="font-weight: bold; margin-top: 10px">Показания: </label>
