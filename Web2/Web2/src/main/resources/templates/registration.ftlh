@@ -1,6 +1,11 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page "Регистрация">
+    <#if message??>
+        <#if message = "User exists!">
+            <script>window.alert("User exists!");</script>
+        </#if>
+    </#if>
     <div class="row" style="margin-top: 200px">
         <div class="col-lg-4 offset-4 text-center loginWindow">
             <form action="/registration" method="post">

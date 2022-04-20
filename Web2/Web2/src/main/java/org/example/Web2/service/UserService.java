@@ -1,5 +1,6 @@
 package org.example.Web2.service;
 
+import org.example.Web2.controllers.Response;
 import org.example.Web2.domain.User;
 import org.example.Web2.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,27 @@ public class UserService implements UserDetailsService {
         return tempUser;
     }
 
-    public void addUser(User user){
+    public Response createUser(String username,
+                           String password,
+                           String firstname,
+                           String lastname,
+                           String patronymic,
+                           String phoneNumber,
+                           String email){
+        Response response = new Response();
+
+        if (userRepo.existsByUsername(username)) {
+            response.setMessage("User exists!");
+            response.setTarget("registration");
+            return response;
+        }
+        User user = new User(username, password, "ADMIN", firstname, lastname, patronymic, phoneNumber, email);
+        user.setActive(true);
         user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
         userRepo.save(user);
+
+        response.setTarget("redirect:/login");
+
+        return response;
     }
 }

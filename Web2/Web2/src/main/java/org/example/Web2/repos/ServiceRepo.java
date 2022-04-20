@@ -11,4 +11,6 @@ public interface ServiceRepo extends JpaRepository<Service, Long> {
     Service findServiceById(Long id);
 
     List<Service> findByAddressId(Address address);
+
+    Boolean existsByAddressIdAndType(Address address, String type);
 }

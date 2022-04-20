@@ -2,8 +2,8 @@
 
 <@c.page "Добавление услуги">
     <#if error??>
-        <#if error = "Такая услуга уже есть.">
-        <script>window.alert("Такая услуга уже есть.");</script>
+        <#if error = "Такая услуга уже есть!">
+            <script>window.alert("Такая услуга уже есть!");</script>
         </#if>
     </#if>
     <div class="row text-center g-0">

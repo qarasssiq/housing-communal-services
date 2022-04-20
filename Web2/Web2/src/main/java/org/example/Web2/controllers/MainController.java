@@ -17,7 +17,7 @@ public class MainController {
     private AddressRepo addressRepo;
 
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
+    public String greeting() {
         return "greeting";
     }
 
