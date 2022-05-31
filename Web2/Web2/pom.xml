@@ -64,6 +64,11 @@
             <version>${springboot.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!-- Возможно, нужная зависимость
         <dependency>
             <groupId>org.springframework.data</groupId>

@@ -9,6 +9,8 @@
                 <tr>
                     <th>Населённый пункт</th>
                     <th>Адрес</th>
+                    <th>Количество проживающих</th>
+                    <th>Площадь помещения</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -17,6 +19,8 @@
                     <tr>
                         <td>${address.city}</td>
                         <td>${address.address}</td>
+                        <td>${address.numberOfResidents} чел.</td>
+                        <td>${address.apartmentSize} кв.м.</td>
                         <td><input type="button" value="Услуги" onClick='location.href="/address/${address.id}"'></td>
                     </tr>
                 <#else>

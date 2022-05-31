@@ -32,6 +32,8 @@ public class User implements UserDetails {
 
     private String email;
 
+    private String activationCode;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "userId")
     private Set<Address> addresses;
 
@@ -199,5 +201,13 @@ public class User implements UserDetails {
     public boolean isAdmin() {
         return userRole.equals("ADMIN");
         //return roles.contains(Role.ADMIN);
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 }

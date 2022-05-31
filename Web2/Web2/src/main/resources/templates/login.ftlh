@@ -1,6 +1,14 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page "Login">
+    <#if message??>
+        <#if message = "Пользователь успешно активирован.">
+            <script>window.alert("Пользователь успешно активирован.");</script>
+        </#if>
+        <#if message = "Код активации не найден!">
+            <script>window.alert("Код активации не найден!");</script>
+        </#if>
+    </#if>
     <div class="col-lg-4 offset-4 text-center loginWindow">
         <form action="/login" method="post">
             <div class="row">
