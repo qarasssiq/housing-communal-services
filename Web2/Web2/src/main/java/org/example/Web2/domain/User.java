@@ -20,7 +20,7 @@ public class User implements UserDetails {
 
     private String userRole;
 
-    private boolean active;
+    private boolean active = false;
 
     private String firstname;
 
@@ -195,7 +195,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isActive();
     }
 
     public boolean isAdmin() {

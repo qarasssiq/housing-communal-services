@@ -10,7 +10,7 @@
         </#if>
     </#if>
     <div class="col-lg-4 offset-4 text-center loginWindow">
-        <form action="/login" method="post">
+        <form name='f' action="/login" method="post">
             <div class="row">
                 <h1>Авторизация</h1>
                 <div style="margin-top: 20px;"><label style="margin-left: 25px">Имя : <input type="text" name="username"/></label></div>
@@ -23,4 +23,23 @@
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+        function validate() {
+            if (document.f.username.value === "" && document.f.password.value === "") {
+                window.alert("Username and password are required");
+                document.f.username.focus();
+                return false;
+            }
+            if (document.f.username.value === "") {
+                window.alert("Username is required");
+                document.f.username.focus();
+                return false;
+            }
+            if (document.f.password.value === "") {
+                window.alert("Password is required");
+                document.f.password.focus();
+                return false;
+            }
+        }
+    </script>
 </@c.page>

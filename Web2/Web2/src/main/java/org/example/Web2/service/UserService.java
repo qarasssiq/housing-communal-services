@@ -65,7 +65,6 @@ public class UserService implements UserDetailsService {
             return response;
         }
         User user = new User(username, password, "ADMIN", firstname, lastname, patronymic, phoneNumber, email);
-        user.setActive(true);
         user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
         user.setActivationCode(UUID.randomUUID().toString());
         userRepo.save(user);
@@ -74,7 +73,7 @@ public class UserService implements UserDetailsService {
             String text = String.format(
                     "Здравствуйте, %s!\n" +
                             "Благодарим Вас за регистрацию на сайте \"ЖКХ\"\n" +
-                            "Пожалуйста, для активации аккаунта перейдите по следующей ссылке: http://localhost:8081/activate/%s\n" +
+                            "Пожалуйста, для активации аккаунта перейдите по следующей ссылке: http://localhost:8080/activate/%s\n" +
                             "Если Вы не регистрировались, игнорируйте это сообщение",
                     user.getUsername(),
                     user.getActivationCode()
@@ -96,6 +95,7 @@ public class UserService implements UserDetailsService {
         }
 
         user.setActivationCode(null);
+        user.setActive(true);
 
         userRepo.save(user);
 

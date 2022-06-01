@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .rememberMe()
                 .and()
                     .logout()                                       //Включаем logout
-                    .permitAll();                                  //Разрешаем всем пользоваться этим
+                    .permitAll();                                   //Разрешаем всем пользоваться этим
 
     }
 

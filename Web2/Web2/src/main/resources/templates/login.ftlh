@@ -10,7 +10,7 @@
         </#if>
     </#if>
     <div class="col-lg-4 offset-4 text-center loginWindow">
-        <form action="/login" method="post">
+        <form name='f' action="/login" method="post">
             <div class="row">
                 <h1>Авторизация</h1>
                 <div style="margin-top: 20px;"><label style="margin-left: 25px">Имя : <input type="text" name="username"/></label></div>
