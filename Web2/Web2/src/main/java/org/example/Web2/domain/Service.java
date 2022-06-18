@@ -17,6 +17,8 @@ public class Service {
 
     private String personalAccountNumber;
 
+    private Double lastMeter = 0.0;
+
     public Service() {
     }
 
@@ -48,5 +50,13 @@ public class Service {
 
     public void setPersonalAccountNumber(String personalAccountNumber) {
         this.personalAccountNumber = personalAccountNumber;
+    }
+
+    public Double getLastMeter() {
+        return lastMeter;
+    }
+
+    public void setLastMeter(Double lastMeter) {
+        this.lastMeter = lastMeter;
     }
 }

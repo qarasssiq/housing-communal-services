@@ -1,8 +1,5 @@
 package org.example.Web2.domain;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
 import javax.persistence.*;
 
 @Entity
@@ -20,12 +17,18 @@ public class Address {
 
     private String address;
 
+    private Integer numberOfResidents;
+
+    private Integer apartmentSize;
+
     public Address() {}
 
-    public Address(String city, String address, User user) {
+    public Address(String city, String address, User user, Integer numberOfResidents, Integer apartmentSize) {
         this.city = city;
         this.address = address;
         this.userId = user;
+        this.numberOfResidents = numberOfResidents;
+        this.apartmentSize = apartmentSize;
     }
 
     public String getCity() {
@@ -46,5 +49,21 @@ public class Address {
 
     public Long getId() {
         return id;
+    }
+
+    public Integer getNumberOfResidents() {
+        return numberOfResidents;
+    }
+
+    public void setNumberOfResidents(Integer numberOfResidents) {
+        this.numberOfResidents = numberOfResidents;
+    }
+
+    public Integer getApartmentSize() {
+        return apartmentSize;
+    }
+
+    public void setApartmentSize(Integer apartmentSize) {
+        this.apartmentSize = apartmentSize;
     }
 }

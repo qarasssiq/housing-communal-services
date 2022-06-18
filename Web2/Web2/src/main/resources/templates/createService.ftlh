@@ -14,6 +14,9 @@
                     <option value="Вода">Вода</option>
                     <option value="Электричество">Электричество</option>
                     <option value="Газ">Газ</option>
+                    <option value="Капремонт">Капремонт</option>
+                    <option value="Отопление">Отопление</option>
+                    <option value="Вывоз мусора">Вывоз мусора</option>
                 </select>
             </div>
             <div>

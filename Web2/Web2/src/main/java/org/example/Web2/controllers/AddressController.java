@@ -40,8 +40,10 @@ public class AddressController {
     @PostMapping("/create")
     public String createAddress(@AuthenticationPrincipal User user,
                                 @RequestParam String city,
-                                @RequestParam String shortAddress){
-        Address address = new Address(city, shortAddress, user);
+                                @RequestParam String shortAddress,
+                                @RequestParam Integer numberOfResidents,
+                                @RequestParam Integer apartmentSize){
+        Address address = new Address(city, shortAddress, user, numberOfResidents, apartmentSize);
         addressRepo.save(address);
         return "redirect:/main";
     }
@@ -63,6 +65,7 @@ public class AddressController {
         model.addAttribute("formatter", formatter);
         model.addAttribute("service", service);
         model.addAttribute("bills", bills);
+        model.addAttribute("address", service.getAddressId());
         return "service";
     }
 
@@ -71,7 +74,7 @@ public class AddressController {
                           @PathVariable Long addressId,
                           @PathVariable Long serviceId,
                           @PathVariable String amount) {
-        addressService.confirmPayment(id, amount);
+        addressService.confirmPayment(id, amount, serviceId);
         return "redirect:/address/" + addressId + "/service/" + serviceId;
     }
 
@@ -90,7 +93,20 @@ public class AddressController {
     }
 
     @GetMapping("{addressId}/service/{serviceId}/createBill/{type}")
-    public String createBill(@PathVariable String addressId, @PathVariable String serviceId, @PathVariable String type){
+    public String createBill(@PathVariable Long addressId, @PathVariable Long serviceId, @PathVariable String type, Model model){
+        Address address = addressRepo.findAddressById(addressId);
+
+        double amount = switch (type) {
+            case ("Капремонт") -> address.getApartmentSize() * 7.27;
+            case ("Отопление") -> address.getApartmentSize() * 28.7;
+            case ("Вывоз мусора") -> address.getNumberOfResidents() * 67.59;
+            default -> 0.0;
+        };
+
+        model.addAttribute("service" , serviceRepo.findServiceById(serviceId));
+        model.addAttribute("address", address);
+        model.addAttribute("amount", amount);
+
         return "createBill";
     }
 
@@ -98,9 +114,24 @@ public class AddressController {
     public String createBill(@PathVariable Long addressId,
                              HttpServletRequest request,
                              @PathVariable Long serviceId,
-                             @PathVariable String type){
-        addressService.createBill(serviceId, request);
-        return "redirect:/address/" + addressId + "/service/" + serviceId;
+                             @PathVariable String type,
+                             Model model){
+        Response response = addressService.createBill(addressId, serviceId, request);
+        Address address = addressRepo.findAddressById(addressId);
+
+        double amount = switch (type) {
+            case ("Капремонт") -> address.getApartmentSize() * 7.27;
+            case ("Отопление") -> address.getApartmentSize() * 28.7;
+            case ("Вывоз мусора") -> address.getNumberOfResidents() * 67.59;
+            default -> 0.0;
+        };
+
+        model.addAttribute("service" , serviceRepo.findServiceById(serviceId));
+        model.addAttribute("error", response.getMessage());
+        model.addAttribute("address", address);
+        model.addAttribute("amount", amount);
+
+        return response.getTarget();
     }
 
     @GetMapping("{addressId}/service/{serviceId}/history")

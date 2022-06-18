@@ -12,4 +12,6 @@ public interface BillRepo extends JpaRepository<Bill, Long> {
     List<Bill> findByServiceIdAndIsPaidFalse(Service service);
 
     Bill findBillById(Long id);
+
+    List<Bill> findByServiceIdOrderByDateAsc(Service service);
 }

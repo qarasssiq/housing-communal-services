@@ -20,6 +20,8 @@ public class Bill {
 
     private Double amount;
 
+    private Double paidAmount = 0.0;
+
     private LocalDate date;
 
     public Bill() {
@@ -58,6 +60,14 @@ public class Bill {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Double getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(Double paidAmount) {
+        this.paidAmount = paidAmount;
     }
 
     public LocalDate getDate() {
