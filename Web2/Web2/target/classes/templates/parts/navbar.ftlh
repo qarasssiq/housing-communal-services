@@ -1,10 +1,8 @@
 <#include "security.ftlh">
 <div class="navbar border-bottom fixed-top navbar-expand-lg navbar-light bg-light text-center">
     <div class="col-lg-6">
-        <h1><a href="/" style="text-decoration:none;">
-                <span style='color: white; text-shadow: black 0 0 2px;'>Ж</span>
-                <span style='color: blue; text-shadow: black 0 0 2px;'> К</span>
-                <span style='color: red; text-shadow: black 0 0 2px;'> Х</span>
+        <h1><a href="/" style="text-decoration:none; color: black; text-shadow: black 0 0 2px;">
+                Ж К Х
             </a>
         </h1>
     </div>
